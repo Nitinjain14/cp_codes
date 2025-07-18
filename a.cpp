@@ -2,31 +2,22 @@
 using namespace std;
  
 void solve(){
-    int n;
-    cin >> n;
-    vector<int> a(n);
-    for(int i=0;i<n;i++){
-        cin>> a[i];
-    }
+    int n,k;
+    cin>>n>>k;
 
-
-    for(int i=0;i<n-1;i++){
-        if(abs(a[i]-a[i+1]) <= 1) {
-            cout<<0<<endl;
-            return;
+    while(n>0 && n%10<k){
+        if(n%10!=0 && n%10<k){
+            k-=(n%10);
+            n-=(n%10);
+        }
+        else if(n%10==0){
+            n=n/10;
+            k-=1;
         }
     }
-    for (int i = 1; i + 1 < n; i++) {
-		if (a[i - 1] < a[i] && a[i] > a[i + 1]) {
-			cout << 1 << endl;
-			return;
-		}
-		if (a[i - 1] > a[i] && a[i] < a[i + 1]) {
-			cout << 1 << endl;
-			return;
-		}
-	}
-	cout << -1 << endl;
+    if(n%10>=k){
+        cout<<n-k;
+    }
 }
  
 int main(){
@@ -40,7 +31,7 @@ int main(){
         freopen("./outputs/output.txt", "w", stdout);
     #endif
  
-    int t; cin>>t;while(t--)
+    //int t; cin>>t;while(t--)
     solve();
  
     return 0;
